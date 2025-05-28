@@ -1,30 +1,96 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title> Big Of 2 Numbers </title>
-        <style type="text/css">
-            @import url("bigof2.css");
-        </style>
-    </head>
-    <body>
-        <div id="data">
-           <label for="firstNum"> First Number: </label> 
-           <input type="text" id="firstNum">
-           <label for="secondNum"> Second Number: </label> 
-           <input type="text" id="secondNum">
-        </div>
-        <div>
-            <p id="outputPara" onclick="findBigOf2()"> Click Me to get the Answer </p>
-        </div>
-        <script>
-            function findBigOf2() {
-                num1 = parseInt(document.getElementById("firstNum").value)
-                num2 = parseInt(document.getElementById("secondNum").value)
-                if(num1 > num2)
-                    document.getElementById("outputPara").innerHTML = "Number1 = " + num1 + " is big"
-                else
-                document.getElementById("outputPara").innerHTML = "Number2 = " + num2 + " is big"
+<head>
+    <title>Big Of 2 Numbers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        #data {
+            background-color: #e0f7fa;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #00796b;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            border: 2px solid #00796b;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #004d40;
+            outline: none;
+        }
+
+        #outputPara {
+            background-color: #00796b;
+            color: #e0f2f1;
+            font-weight: bold;
+            padding: 15px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 300px;
+            text-align: center;
+            user-select: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        #outputPara:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+<body>
+    <div id="data">
+       <label for="firstNum">First Number:</label> 
+       <input type="text" id="firstNum" placeholder="Enter first number">
+       <label for="secondNum">Second Number:</label> 
+       <input type="text" id="secondNum" placeholder="Enter second number">
+    </div>
+    <div>
+        <p id="outputPara" onclick="findBigOf2()">Click Me to get the Answer</p>
+    </div>
+    <script>
+        function findBigOf2() {
+            let num1 = parseInt(document.getElementById("firstNum").value);
+            let num2 = parseInt(document.getElementById("secondNum").value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById("outputPara").innerHTML = "Please enter valid numbers!";
+                return;
             }
-        </script>
-    </body>
+
+            if (num1 > num2)
+                document.getElementById("outputPara").innerHTML = "Number1 = " + num1 + " is big";
+            else if (num2 > num1)
+                document.getElementById("outputPara").innerHTML = "Number2 = " + num2 + " is big";
+            else
+                document.getElementById("outputPara").innerHTML = "Both numbers are equal: " + num1;
+        }
+    </script>
+</body>
 </html>

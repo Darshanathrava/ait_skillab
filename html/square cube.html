@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Number Checker</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 350px;
+      text-align: center;
+    }
+
+    input {
+      padding: 8px;
+      font-size: 16px;
+      width: 120px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px 0;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .label {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Number Checker</h2>
+    <input type="number" id="numberInput" placeholder="Enter a number" />
+    <br />
+    <button onclick="checkNumber()">Check</button>
+
+    <div class="result" id="primeResult"></div>
+    <div class="result" id="squareResult"></div>
+    <div class="result" id="cubeResult"></div>
+  </div>
+
+  <script>
+    function checkNumber() {
+      const num = parseInt(document.getElementById("numberInput").value);
+      const primeResult = document.getElementById("primeResult");
+      const squareResult = document.getElementById("squareResult");
+      const cubeResult = document.getElementById("cubeResult");
+
+      if (isNaN(num) || num < 1) {
+        primeResult.textContent = "Please enter a positive number.";
+        squareResult.textContent = "";
+        cubeResult.textContent = "";
+        return;
+      }
+
+      // Check for prime
+      let isPrime = true;
+      if (num === 1) {
+        isPrime = false;
+      } else {
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+          if (num % i === 0) {
+            isPrime = false;
+            break;
+          }
+        }
+      }
+
+      primeResult.textContent = `Is Prime: ${isPrime ? "Yes" : "No"}`;
+      squareResult.textContent = `Square: ${num * num}`;
+      cubeResult.textContent = `Cube: ${num * num * num}`;
+    }
+  </script>
+</body>
+</html>

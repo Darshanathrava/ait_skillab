@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prime Number Checker</title>
+  <style>
+    /* Animated gradient background */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      animation: gradientBG 10s ease infinite;
+      background: linear-gradient(-45deg, #1e3c72, #2a5298, #1e3c72, #0f2027);
+      background-size: 400% 400%;
+      height: 100vh;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      position: relative;
+      width: 600px;
+      height: 300px;
+      margin: 100px auto;
+      padding: 20px;
+      border-radius: 15px;
+      background-color: rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .box {
+      position: absolute;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 8px;
+      text-shadow: 0 0 4px black;
+    }
+
+    .label1 {
+      background-color: #c97a00;
+      top: 20px;
+      left: 50px;
+    }
+
+    .input1 {
+      background-color: #5e7b5e;
+      top: 20px;
+      left: 220px;
+    }
+
+    .input1 input {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 16px;
+      width: 100px;
+      outline: none;
+      -moz-appearance: textfield; /* Firefox */
+    }
+
+    /* Remove arrows in Chrome/Safari */
+    .input1 input::-webkit-outer-spin-button,
+    .input1 input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .label2 {
+      background-color: #e94e02;
+      top: 80px;
+      left: 50px;
+    }
+
+    .output {
+      background-color: #00aaff;
+      top: 80px;
+      left: 220px;
+      min-width: 100px;
+    }
+
+    .button {
+      background-color: #aa88cc;
+      top: 150px;
+      left: 120px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .button:hover {
+      background-color: #c3aaff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box label1">Input Number</div>
+    <div class="box input1">
+      <input type="number" id="numberInput" placeholder="Enter number" />
+    </div>
+    <div class="box label2">is Prime</div>
+    <div class="box output" id="resultBox">--</div>
+    <div class="box button" onclick="checkPrime()">Check Prime</div>
+  </div>
+
+  <script>
+    function checkPrime() {
+      const num = parseInt(document.getElementById("numberInput").value);
+      const resultBox = document.getElementById("resultBox");
+
+      if (isNaN(num) || num < 1) {
+        resultBox.textContent = "Invalid";
+        return;
+      }
+
+      if (num === 1) {
+        resultBox.textContent = "No";
+        return;
+      }
+
+      for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+          resultBox.textContent = "No";
+          return;
+        }
+      }
+
+      resultBox.textContent = "Yes";
+    }
+  </script>
+</body>
+</html>
